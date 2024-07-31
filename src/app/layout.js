@@ -13,7 +13,7 @@ export const metadata = {
   description: "Buy your anime NFTs here. Totally legit.",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={roboto_condensed.className}>

@@ -1,8 +1,10 @@
 import React from "react";
 import Link from "next/link";
 import LoginModal from "./LoginModal"
+import SignOut from "./SignOut";
+import { createClient } from "@/utils/supabase/server";
 
-export default function NavBar() {
+export default async function NavBar() {
   const navItems = [
     {
       name: "Store",
@@ -13,6 +15,9 @@ export default function NavBar() {
       url: "sale",
     }]
 
+  const supabase = createClient();
+  const { data, error } = await supabase.auth.getUser();
+  const userdata = data.user
   return (
     <div className=" flex flex-row w-screen justify-center align-middle gap-[10vw] my-[3vh]">
       {navItems.map((item, index) => {
@@ -28,7 +33,7 @@ export default function NavBar() {
           </Link>
         );
       })}
-      <LoginModal />
+      { userdata ? <SignOut/> : <LoginModal/>}
     </div>
   );
 }
