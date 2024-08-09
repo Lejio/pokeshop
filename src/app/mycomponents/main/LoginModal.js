@@ -67,5 +67,3 @@ export default function LoginModal() {
     </AlertDialog>
   );
 }
-
-//https://dbgturazgrndhmdnbynp.supabase.co/auth/v1/callback

@@ -1,10 +1,14 @@
-import React from 'react'
-import { NextUIProvider } from '@nextui-org/react'
+'use client'
+
+import React from "react";
+import { NextUIProvider } from "@nextui-org/system";
 
 export default function MyProviders({ children }) {
+
+
   return (
-    <NextUIProvider>
+      <NextUIProvider>
       {children}
-    </NextUIProvider>
-  )
+      </NextUIProvider>
+  );
 }

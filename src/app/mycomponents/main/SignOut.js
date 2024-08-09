@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { Button } from "@/components/ui/button";
 import { createClient } from "@/utils/supabase/client";
 import { NavigationMenuLink } from "@/components/ui/navigation-menu";
 

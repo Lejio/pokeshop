@@ -19,25 +19,25 @@ import {
 const current_events = [
   {
     title: "Volanic Eruption Event",
-    href: "/events/volcanic-eruption",
+    href: "/events/volcanic_eruption",
     description:
       "A volcano has erupted in the middle of the ocean. The pokemon living in the area are in danger. Help them!",
   },
   {
     title: "Increased Spawns",
-    href: "/events/increased-spawns",
+    href: "/events/increased_spawns",
     description:
       "The fire type pokemon in the area are more active than usual. Catch them all!",
   },
   {
     title: "New Items!",
-    href: "/events/new-items",
+    href: "/events/new_items",
     description:
       "New items have been added to the game. Find them in the shop!",
   },
   {
     title: "New Area to Explore",
-    href: "/events/new-area",
+    href: "/events/new_area",
     description: "A new area has been discovered. Explore it now!",
   },
 ];
@@ -123,7 +123,7 @@ export default async function NavBar() {
                   <NavigationMenuLink asChild>
                     <a
                       className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      href="/"
+                      href="/join"
                     >
                       <div className="mb-2 mt-4 text-lg font-medium">
                         Join Today!
@@ -186,13 +186,13 @@ export default async function NavBar() {
             <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
             <NavigationMenuContent>
               <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {catalog.map((catalog, index) => (
+                {shop.map((items, index) => (
                   <ListItem
                     key={index}
-                    title={catalog.title}
-                    href={catalog.href}
+                    title={items.title}
+                    href={items.href}
                   >
-                    {catalog.description}
+                    {items.description}
                   </ListItem>
                 ))}
               </ul>
