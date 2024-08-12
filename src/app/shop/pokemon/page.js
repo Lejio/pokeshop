@@ -1,88 +1,23 @@
 import React from "react";
 import ItemCard from "../shop-components/ItemCard";
-export default function page() {
-  const pokemon = [
-    {
-      pokemon_name: "Piplup",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/393.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Chimchar",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/390.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Turtwig",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/387.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Charzard",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Piplup",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/393.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Chimchar",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/390.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Turtwig",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/387.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Charzard",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Piplup",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/393.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Chimchar",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/390.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Turtwig",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/387.png",
-      price: 2000,
-    },
-    {
-      pokemon_name: "Charzard",
-      pokemon_image:
-        "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/6.png",
-      price: 2000,
-    },
-  ];
+import { createClient } from "@/utils/supabase/client";
+
+export default async function page() {
+  const supabase = createClient();
+
+  const { data, error } = await supabase
+    .from("pokemon")
+    .select("*")
+    .eq("pokemon_type", "Water");
+
   return (
     <div className=" flex flex-row flex-wrap gap-5 my-10 mx-20">
-      {pokemon.map((item, index) => {
+      {data.map((item) => {
         return (
           <ItemCard
-            key={index}
+            key={item.id}
             pokemon_name={item.pokemon_name}
-            pokemon_image={item.pokemon_image}
+            pokemon_image={item.image}
             price={item.price}
           />
         );

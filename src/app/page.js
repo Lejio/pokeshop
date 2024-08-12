@@ -1,5 +1,5 @@
 import React from "react";
-import Spline from "@splinetool/react-spline/next"
+import Spline from "@splinetool/react-spline/next";
 import Hero from "./mycomponents/main/Hero";
 import StoreTest from "./mycomponents/main/StoreTest";
 import { createClient } from "@/utils/supabase/server";
@@ -38,17 +38,17 @@ import { createClient } from "@/utils/supabase/server";
 // ]
 
 export default async function Home() {
-  const supabase = createClient();
+  // const supabase = createClient();
 
   // const { data, error } = await supabase.from("pokemon").insert(pokemon_insert);
   // if (error) {
   //   console.error(error);
   // }
-  const { data, error } = await supabase.from("pokemon").select("*").eq("pokemon_name", "Chimchar").single();
+  // const { data, error } = await supabase.from("pokemon").select("*");
 
-  console.log(data.image);
+  // console.log(data);
 
-  console.log("Added pokemon to the database");
+  // console.log("Added pokemon to the database");
 
   return (
     <main>

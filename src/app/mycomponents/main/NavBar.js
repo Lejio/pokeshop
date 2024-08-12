@@ -3,7 +3,6 @@ import LoginModal from "./LoginModal";
 import SignOut from "./SignOut";
 import { createClient } from "@/utils/supabase/server";
 // import { NavBarContents } from "./NavBarContents";
-import Link from "next/link";
 import { cn } from "@/lib/utils";
 
 import {
@@ -13,7 +12,6 @@ import {
   NavigationMenuLink,
   NavigationMenuList,
   NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 
 const current_events = [
@@ -112,98 +110,88 @@ export default async function NavBar() {
   const userdata = data.user;
 
   return (
-    <div className=" flex flex-row w-screen justify-center align-middle gap-[10vw]">
-      <NavigationMenu className=" bg-white mt-8 px-3">
-        <NavigationMenuList>
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid gap-3 p-6 rounded-full md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
-                <li className="row-span-3">
-                  <NavigationMenuLink asChild>
-                    <a
-                      className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                      href="/join"
-                    >
-                      <div className="mb-2 mt-4 text-lg font-medium">
-                        Join Today!
-                      </div>
-                      <p className="text-sm leading-tight text-muted-foreground">
-                        Capture pokemons with your friends from the comfort of
-                        your discord server.
-                      </p>
-                    </a>
-                  </NavigationMenuLink>
-                </li>
-                {getting_started_items.map(
-                  ({ title, href, description }, index) => {
-                    return (
-                      <ListItem key={index} href={href} title={title}>
-                        {description}
-                      </ListItem>
-                    );
-                  }
-                )}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Eruption Event!</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {current_events.map((current_events) => (
-                  <ListItem
-                    key={current_events.title}
-                    title={current_events.title}
-                    href={current_events.href}
+    <NavigationMenu className=" bg-white px-3">
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid gap-3 p-6 rounded-full md:w-[400px] lg:w-[500px] lg:grid-cols-[.75fr_1fr]">
+              <li className="row-span-3">
+                <NavigationMenuLink asChild>
+                  <a
+                    className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
+                    href="/join"
                   >
-                    {current_events.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+                    <div className="mb-2 mt-4 text-lg font-medium">
+                      Join Today!
+                    </div>
+                    <p className="text-sm leading-tight text-muted-foreground">
+                      Capture pokemons with your friends from the comfort of
+                      your discord server.
+                    </p>
+                  </a>
+                </NavigationMenuLink>
+              </li>
+              {getting_started_items.map(
+                ({ title, href, description }, index) => {
+                  return (
+                    <ListItem key={index} href={href} title={title}>
+                      {description}
+                    </ListItem>
+                  );
+                }
+              )}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Catalog</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {catalog.map((catalog, index) => (
-                  <ListItem
-                    key={index}
-                    title={catalog.title}
-                    href={catalog.href}
-                  >
-                    {catalog.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Eruption Event!</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+              {current_events.map((current_events) => (
+                <ListItem
+                  key={current_events.title}
+                  title={current_events.title}
+                  href={current_events.href}
+                >
+                  {current_events.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
 
-          <NavigationMenuItem>
-            <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
-                {shop.map((items, index) => (
-                  <ListItem
-                    key={index}
-                    title={items.title}
-                    href={items.href}
-                  >
-                    {items.description}
-                  </ListItem>
-                ))}
-              </ul>
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-          <NavigationMenuItem>
-            {userdata ? <SignOut /> : <LoginModal />}
-          </NavigationMenuItem>
-        </NavigationMenuList>
-      </NavigationMenu>
-    </div>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Catalog</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+              {catalog.map((catalog, index) => (
+                <ListItem key={index} title={catalog.title} href={catalog.href}>
+                  {catalog.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Shop</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+              {shop.map((items, index) => (
+                <ListItem key={index} title={items.title} href={items.href}>
+                  {items.description}
+                </ListItem>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          {userdata ? <SignOut /> : <LoginModal />}
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }
 const ListItem = ({ className, title, children, ...props }, ref) => {
