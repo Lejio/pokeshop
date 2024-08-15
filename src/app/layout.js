@@ -32,7 +32,7 @@ export default function RootLayout({ children }) {
                 </div>
               </div>
             </div>
-            <div className="absolute inset-0 z-10 h-[100vh]">{children}</div>
+            <div className="absolute inset-0 z-10">{children}</div>
           </div>
         </MyProviders>
       </body>

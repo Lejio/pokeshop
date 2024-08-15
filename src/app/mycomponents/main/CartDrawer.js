@@ -1,7 +1,7 @@
 "use client";
 import * as React from "react";
-import { AiOutlineShopping } from "react-icons/ai";
 import CartItem from "./CartItem";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
@@ -16,15 +16,31 @@ import {
 import { useCart } from "@/lib/hooks";
 
 export function CartDrawer() {
+  const router = useRouter();
   const cart = useCart();
   console.log(cart.cartItems)
+
+  async function handleCheckout() {
+    const response = await fetch("../../checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        cart: cart.cartItems
+      })
+    });
+    const data = await response.json();
+    router.push(data.message);
+  }
+
   return (
     <Drawer direction="right">
       <DrawerTrigger asChild>
-        <Button variant="outline">Open Drawer</Button>
+        <Button variant="outline">Cart</Button>
       </DrawerTrigger>
 
-      <DrawerContent className="top-0 mt-0 ml-[75%] rounded-t-none rounded-[10px]">
+      <DrawerContent className="top-0 mt-0 ml-[75%] rounded-t-none rounded-[10px] overflow-y-scroll overflow-x-hidden">
         <div className="mx-auto w-full max-w-sm">
           <DrawerHeader>
             <DrawerTitle className=" mt-5 text-3xl">Cart</DrawerTitle>
@@ -39,7 +55,7 @@ export function CartDrawer() {
           </div>
 
           <DrawerFooter className="flex flex-col items-center justify-center">
-            <Button className=" w-40">Submit</Button>
+            <Button onClick={handleCheckout} className=" w-40">Checkout</Button>
             <DrawerClose asChild>
               <Button className=" w-40" variant="outline">Cancel</Button>
             </DrawerClose>

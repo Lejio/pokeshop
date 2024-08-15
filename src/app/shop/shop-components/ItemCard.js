@@ -3,10 +3,16 @@ import React from "react";
 import { Card, CardFooter } from "@nextui-org/card";
 import { Chip } from "@nextui-org/chip";
 import Image from "next/image";
-import { useCart } from "@/lib/hooks";
+import { useRouter } from "next/navigation";
+// import { useCart } from "@/lib/hooks";
 
 export default function ItemCard({ uuid, pokemon_name, pokemon_image, price }) {
-  const addToCart= useCart((state) => state.addToCart);
+  // const addToCart= useCart((state) => state.addToCart);
+  const router = useRouter();
+
+  function handlePress() {
+    router.push(`/shop/pokemon/${pokemon_name}`);
+  }
 
   return (
     <div className=" w-[300px]">
@@ -15,7 +21,7 @@ export default function ItemCard({ uuid, pokemon_name, pokemon_image, price }) {
         radius="lg"
         className="border-none justify-center align-middle items-center content-center"
         isPressable
-        onPress={() => addToCart({ uuid, pokemon_name, pokemon_image, price })}
+        onPress={handlePress}
       >
         <Image
           alt={pokemon_name}

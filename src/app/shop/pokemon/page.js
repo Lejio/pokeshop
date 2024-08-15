@@ -9,7 +9,7 @@ export default async function page() {
     .from("pokemon")
     .select("*")
     // .eq("pokemon_type", "Water");
-  console.log(data)
+  // console.log(data)
 
   return (
     <div className=" flex flex-row flex-wrap gap-5 my-10 mx-20">
