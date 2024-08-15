@@ -8,7 +8,8 @@ export default async function page() {
   const { data, error } = await supabase
     .from("pokemon")
     .select("*")
-    .eq("pokemon_type", "Water");
+    // .eq("pokemon_type", "Water");
+  console.log(data)
 
   return (
     <div className=" flex flex-row flex-wrap gap-5 my-10 mx-20">
@@ -16,6 +17,7 @@ export default async function page() {
         return (
           <ItemCard
             key={item.id}
+            uuid={item.id}
             pokemon_name={item.pokemon_name}
             pokemon_image={item.image}
             price={item.price}
